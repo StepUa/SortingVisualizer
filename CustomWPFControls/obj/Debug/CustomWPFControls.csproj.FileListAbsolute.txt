@@ -1,0 +1,5 @@
+D:\Delphi\Practice\Task6\SorterVisualizer_solution\CustomWPFControls\bin\Debug\CustomWPFControls.dll
+D:\Delphi\Practice\Task6\SorterVisualizer_solution\CustomWPFControls\bin\Debug\CustomWPFControls.pdb
+D:\Delphi\Practice\Task6\SorterVisualizer_solution\CustomWPFControls\obj\Debug\CustomWPFControls.dll
+D:\Delphi\Practice\Task6\SorterVisualizer_solution\CustomWPFControls\obj\Debug\CustomWPFControls.pdb
+D:\Delphi\Practice\Task6\SorterVisualizer_solution\CustomWPFControls\obj\Debug\CustomWPFControls.csprojResolveAssemblyReference.cache

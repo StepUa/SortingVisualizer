@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище SortersVisualizerDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="InputArrays">
+    <Key>
+      <PropertyRef Name="iInputArrayId" />
+    </Key>
+    <Property Name="iInputArrayId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="iNumberOfRows" Type="int" Nullable="false" />
+    <Property Name="iNumberOfColumns" Type="int" Nullable="false" />
+    <Property Name="vcInputArrayContent" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SortedArrays">
+    <Key>
+      <PropertyRef Name="iSortedArrayId" />
+    </Key>
+    <Property Name="iSortedArrayId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="iInputArrayId" Type="int" Nullable="false" />
+    <Property Name="fSortingTime" Type="float" Nullable="false" />
+    <Property Name="vcSorterName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="vcSortedArrayContent" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_SortedArrays_InputArrays">
+    <End Role="InputArrays" Type="Self.InputArrays" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SortedArrays" Type="Self.SortedArrays" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InputArrays">
+        <PropertyRef Name="iInputArrayId" />
+      </Principal>
+      <Dependent Role="SortedArrays">
+        <PropertyRef Name="iInputArrayId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище SortersVisualizerDBModelContainer">
+    <EntitySet Name="InputArrays" EntityType="Self.InputArrays" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SortedArrays" EntityType="Self.SortedArrays" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_SortedArrays_InputArrays" Association="Self.FK_SortedArrays_InputArrays">
+      <End Role="InputArrays" EntitySet="InputArrays" />
+      <End Role="SortedArrays" EntitySet="SortedArrays" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

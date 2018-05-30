@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SortersVisualizerDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="InputArrays">
+    <Key>
+      <PropertyRef Name="iInputArrayId" />
+    </Key>
+    <Property Name="iInputArrayId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="iNumberOfRows" Type="Int32" Nullable="false" />
+    <Property Name="iNumberOfColumns" Type="Int32" Nullable="false" />
+    <Property Name="vcInputArrayContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="SortedArrays" Relationship="Self.FK_SortedArrays_InputArrays" FromRole="InputArrays" ToRole="SortedArrays" />
+  </EntityType>
+  <EntityType Name="SortedArrays">
+    <Key>
+      <PropertyRef Name="iSortedArrayId" />
+    </Key>
+    <Property Name="iSortedArrayId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="iInputArrayId" Type="Int32" Nullable="false" />
+    <Property Name="fSortingTime" Type="Double" Nullable="false" />
+    <Property Name="vcSorterName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="vcSortedArrayContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="InputArrays" Relationship="Self.FK_SortedArrays_InputArrays" FromRole="SortedArrays" ToRole="InputArrays" />
+  </EntityType>
+  <Association Name="FK_SortedArrays_InputArrays">
+    <End Role="InputArrays" Type="Self.InputArrays" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SortedArrays" Type="Self.SortedArrays" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InputArrays">
+        <PropertyRef Name="iInputArrayId" />
+      </Principal>
+      <Dependent Role="SortedArrays">
+        <PropertyRef Name="iInputArrayId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SortersVisualizerDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="InputArrays" EntityType="Self.InputArrays" />
+    <EntitySet Name="SortedArrays" EntityType="Self.SortedArrays" />
+    <AssociationSet Name="FK_SortedArrays_InputArrays" Association="Self.FK_SortedArrays_InputArrays">
+      <End Role="InputArrays" EntitySet="InputArrays" />
+      <End Role="SortedArrays" EntitySet="SortedArrays" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

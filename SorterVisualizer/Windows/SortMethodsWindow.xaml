@@ -1,0 +1,49 @@
+﻿<Window x:Class="SorterVisualizer.Windows.SortMethodsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"       
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:localization="clr-namespace:SorterVisualizer.Resources.Localization"
+        Title="Sort methods" Height="300" Width="300" ResizeMode="NoResize"         
+        SizeToContent="Height" WindowStyle="ToolWindow"
+        >
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>        
+        
+        <!--TextBlock with description-->
+        <TextBlock x:Name="tbDescription" Grid.Column="1" Grid.Row="1" TextWrapping="WrapWithOverflow"
+                   Text="{x:Static localization:MessagesSortMethodsListWindow.DescriptionText}"
+                   Margin="0,0,0,5"/>
+        
+        <!--ListBox with sorters-->
+        <ListBox x:Name="lbSorters" Grid.Column="1" Grid.Row="2" ItemsSource="{Binding Path=Sorters, Mode=TwoWay}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Loaded">
+                    <i:InvokeCommandAction Command="{Binding Path=VerifyCollectionCommand}" CommandParameter="{Binding ElementName=lbSorters, Path=Items.Count}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>            
+            <ListBox.ItemTemplate>
+                <DataTemplate>                 
+                    <CheckBox IsChecked="{Binding Path=IsChecked}" Content="{Binding Path=Item}"
+                              Margin="0,5" HorizontalAlignment="Stretch"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Button x:Name="btApply" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Right" 
+                Padding="15,0" Margin="0,5,0,0" Content="{x:Static localization:MessagesSortMethodsListWindow.ApplyText}" 
+                Command="{Binding Path=SelectCommand}"/>
+
+    </Grid>
+</Window>

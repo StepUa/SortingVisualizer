@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище SortersVisualizerDBModelContainer" CdmEntityContainer="SortersVisualizerDBEntities">
+    <EntitySetMapping Name="InputArrays">
+      <EntityTypeMapping TypeName="SortersVisualizerDBModel.InputArrays">
+        <MappingFragment StoreEntitySet="InputArrays">
+          <ScalarProperty Name="iInputArrayId" ColumnName="iInputArrayId" />
+          <ScalarProperty Name="iNumberOfRows" ColumnName="iNumberOfRows" />
+          <ScalarProperty Name="iNumberOfColumns" ColumnName="iNumberOfColumns" />
+          <ScalarProperty Name="vcInputArrayContent" ColumnName="vcInputArrayContent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SortedArrays">
+      <EntityTypeMapping TypeName="SortersVisualizerDBModel.SortedArrays">
+        <MappingFragment StoreEntitySet="SortedArrays">
+          <ScalarProperty Name="iSortedArrayId" ColumnName="iSortedArrayId" />
+          <ScalarProperty Name="iInputArrayId" ColumnName="iInputArrayId" />
+          <ScalarProperty Name="fSortingTime" ColumnName="fSortingTime" />
+          <ScalarProperty Name="vcSorterName" ColumnName="vcSorterName" />
+          <ScalarProperty Name="vcSortedArrayContent" ColumnName="vcSortedArrayContent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
